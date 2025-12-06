@@ -96,19 +96,19 @@ export default function LandingPage() {
             </p>
             
             {/* Email Signup with Enhanced Glow */}
-            <div className="max-w-md mx-auto mb-20 relative group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 rounded-full blur-lg opacity-30 group-hover:opacity-60 transition duration-1000 animate-pulse"></div>
-              <div className="relative flex flex-col sm:flex-row gap-3 bg-black/40 backdrop-blur-2xl p-2 rounded-full border border-blue-400/30 shadow-2xl">
+            <div className="max-w-md mx-auto mb-20 relative group px-4">
+              <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 rounded-3xl blur-lg opacity-30 group-hover:opacity-60 transition duration-1000 animate-pulse"></div>
+              <div className="relative flex flex-col gap-3 bg-black/40 backdrop-blur-2xl p-3 sm:p-2 rounded-3xl sm:rounded-full border border-blue-400/30 shadow-2xl sm:flex-row">
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
-                  className="flex-1 px-6 py-4 rounded-full bg-transparent border-none focus:outline-none text-white placeholder-gray-400"
+                  className="w-full sm:flex-1 px-5 py-3 sm:px-6 sm:py-4 rounded-full bg-transparent border-none focus:outline-none text-white placeholder-gray-400 text-base"
                 />
                 <button
                   onClick={handleSubmit}
-                  className="px-8 py-4 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 text-white rounded-full font-semibold hover:shadow-2xl hover:shadow-blue-500/60 transition-all transform hover:scale-105 active:scale-95"
+                  className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 text-white rounded-full font-semibold hover:shadow-2xl hover:shadow-blue-500/60 transition-all transform hover:scale-105 active:scale-95 whitespace-nowrap"
                 >
                   Notify Me
                 </button>
@@ -168,7 +168,7 @@ export default function LandingPage() {
         </footer>
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes fade-in {
           from { opacity: 0; transform: translateY(20px); }
           to { opacity: 1; transform: translateY(0); }
