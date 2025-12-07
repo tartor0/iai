@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { MdEmail, MdChat, MdPublic } from 'react-icons/md';
 import { IoSend } from 'react-icons/io5';
 import Navbar from '../components/Navbar';
+
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
@@ -29,9 +30,8 @@ export default function Contact() {
   };
 
   return (
-    <div className="font-poppins min-h-screen bg-slate-950">
-        <Navbar />
-      
+    <div className="font-poppins min-h-screen bg-gradient-to-br from-gray-900 via-indigo-900 to-black">
+      <Navbar />
       <div className="pt-32 pb-20 px-6">
         <div className="max-w-4xl mx-auto">
           {/* Header */}

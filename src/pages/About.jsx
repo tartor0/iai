@@ -3,7 +3,7 @@ import Navbar from '../components/Navbar';
 
 export default function About() {
   return (
-    <div className="min-h-screen font-poppins-med bg-slate-950">
+    <div className="min-h-screen font-poppins-med bg-gradient-to-br from-gray-900 via-indigo-900 to-black">
       <Navbar />
       <div className="pt-32 pb-20 px-6">
         <div className="max-w-4xl mx-auto">
