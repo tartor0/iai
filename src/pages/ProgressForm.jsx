@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; // Added import for navigation
 import { FaEnvelope, FaCheckCircle, FaTimesCircle, FaSpinner } from 'react-icons/fa';
 import emailjs from '@emailjs/browser';
 
-export default function ProgressForm({ onVerified }) {
+export default function ProgressForm() {
   const [email, setEmail] = useState('');
   const [token, setToken] = useState('');
   const [error, setError] = useState('');
@@ -10,6 +11,7 @@ export default function ProgressForm({ onVerified }) {
   const [codeSent, setCodeSent] = useState(false);
   const [sendingCode, setSendingCode] = useState(false);
   const [generatedCode, setGeneratedCode] = useState('');
+  const navigate = useNavigate(); // Added for redirect
 
   // EmailJS Configuration - REPLACE THESE WITH YOUR ACTUAL VALUES
   const EMAILJS_SERVICE_ID = 'service_kwmtqx5';
@@ -82,9 +84,7 @@ export default function ProgressForm({ onVerified }) {
   };
 
   // Verify the code entered by user
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    
+  const handleSubmit = async () => { // Removed e.preventDefault since not a form submit
     if (!email || !email.includes('@')) {
       setError('Please enter a valid email address');
       return;
@@ -118,8 +118,8 @@ export default function ProgressForm({ onVerified }) {
           verifiedAt: new Date().toISOString()
         };
 
-        // Call parent callback
-        onVerified(userData);
+        // Redirect to dashboard with userData in state
+        navigate('/dashboard', { state: { userData } });
       } else {
         setError('Invalid code. Please check and try again.');
       }

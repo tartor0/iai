@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom'; // Added imports
 
-export default function DocumentDashboard({ userData, onLogout }) {
+export default function DocumentDashboard() { // Removed unused props; we'll get from location state
   const [expandedCategory, setExpandedCategory] = useState(null);
+  const location = useLocation(); // Added to get state
+  const navigate = useNavigate(); // Added for logout
+  const userData = location.state?.userData; // Get userData from navigation state
 
   useEffect(() => {
     if (typeof window !== 'undefined' && window.AOS) {
@@ -103,6 +107,10 @@ export default function DocumentDashboard({ userData, onLogout }) {
     }
   };
 
+  const handleLogout = () => {
+    navigate('/'); // Redirect to home or login on logout
+  };
+
   return (
     <div className="min-h-screen font-poppins-med bg-slate-950 text-white">
       {/* Header */}
@@ -112,11 +120,11 @@ export default function DocumentDashboard({ userData, onLogout }) {
             <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg"></div>
             <div>
               <h1 className="text-xl font-bold">Document Portal</h1>
-              <p className="text-sm text-slate-400">{userData.email}</p>
+              <p className="text-sm text-slate-400">{userData?.email || 'Guest'}</p> {/* Use userData from state */}
             </div>
           </div>
           <button
-            onClick={onLogout}
+            onClick={handleLogout}
             className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition-colors text-sm flex items-center gap-2"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
