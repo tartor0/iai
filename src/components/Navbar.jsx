@@ -16,7 +16,7 @@ export default function Navbar() {
       scrolled ? 'bg-white/10 backdrop-blur-xl py-3' : 'bg-transparent py-5'
     }`}>
       <div className="max-w-7xl mx-auto px-6">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between pr-20">
           <Link to="/" className="text-2xl font-bold bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
             Insurance + AI
           </Link>
@@ -32,13 +32,6 @@ export default function Navbar() {
               Contact
             </Link>
           </div>
-          
-          <Link 
-            to="/progress"
-            className="hidden md:block px-6 py-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-full hover:shadow-lg hover:shadow-cyan-500/50 transition-all hover:scale-105"
-          >
-            Progress
-          </Link>
           
           <button 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -73,13 +66,6 @@ export default function Navbar() {
               onClick={() => setMobileMenuOpen(false)}
             >
               Contact
-            </Link>
-            <Link 
-              to="/progress"
-              className="block px-6 py-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-full text-center hover:shadow-lg hover:shadow-cyan-500/50 transition-all"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Progress
             </Link>
           </div>
         )}

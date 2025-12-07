@@ -30,7 +30,7 @@ export default function Contact() {
   };
 
   return (
-    <div className="font-poppins min-h-screen bg-gradient-to-br from-gray-900 via-indigo-900 to-black">
+    <div className="font-poppins-med min-h-screen bg-gradient-to-br from-gray-900 via-indigo-900 to-black">
       <Navbar />
       <div className="pt-32 pb-20 px-6">
         <div className="max-w-4xl mx-auto">

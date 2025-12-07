@@ -12,7 +12,13 @@
   src: url("../src/assets/Poppins/Poppins-Medium.ttf");
 }
 
+@font-face {
+  font-family: "pacifico";
+  src: url("../src/assets/Pacifico/Pacifico-Regular.ttf");
+}
+
 @theme {
   --font-poppins: 'Poppins', sans-serif;
   --font-poppins-med: 'Poppins-medium', sans-serif;
+  --font-pacifico: 'pacifico', sans-serif;
 }
