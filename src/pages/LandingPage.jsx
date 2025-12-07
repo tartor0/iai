@@ -1,3 +1,5 @@
+
+
 import { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 
@@ -5,6 +7,8 @@ export default function LandingPage() {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -14,11 +18,46 @@ export default function LandingPage() {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  const handleSubmit = () => {
-    if (email) {
-      setSubmitted(true);
-      setTimeout(() => setSubmitted(false), 3000);
-      setEmail('');
+  const handleSubmit = async () => {
+    // Validate email
+    if (!email || email.trim() === '') {
+      setError('Email is required!');
+      return;
+    }
+
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setError('Please enter a valid email address!');
+      return;
+    }
+
+    setIsLoading(true);
+    setError('');
+    
+    try {
+      // TODO: When client provides API, uncomment this
+      // const API_URL = 'https://your-client-api.com/api/waitlist/subscribe';
+      // const response = await fetch(API_URL, {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify({ email, timestamp: new Date().toISOString() }),
+      // });
+      // const data = await response.json();
+
+      // For now, simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      // Save email to localStorage for the progress page
+      localStorage.setItem('user_email', email);
+      
+      // Redirect to progress page
+      window.location.href = '/progress';
+      
+    } catch (err) {
+      console.error('Error:', err);
+      setError('Error submitting. Please try again!');
+      setIsLoading(false);
     }
   };
 
@@ -92,29 +131,33 @@ export default function LandingPage() {
             {/* Animated Subheading */}
             <p className="text-xl md:text-2xl text-gray-200 mb-12 max-w-2xl mx-auto leading-relaxed animate-fade-in drop-shadow-lg">
               Something <span className="text-blue-400 font-semibold">extraordinary</span> is on the horizon. 
-              Join the waitlist and be part of the <span className="text-purple-400 font-semibold">revolution</span>.
+              Solving your insurance <span className="text-purple-400 font-semibold">payment</span>.
             </p>
             
             {/* Email Signup with Enhanced Glow */}
             <div className="max-w-md mx-auto mb-20 relative group px-4">
-              <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 rounded-3xl blur-lg opacity-30 group-hover:opacity-60 transition duration-1000 animate-pulse"></div>
-              <div className="relative flex flex-col gap-3 bg-black/40 backdrop-blur-2xl p-3 sm:p-2 rounded-3xl sm:rounded-full border border-blue-400/30 shadow-2xl sm:flex-row">
+              <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 rounded-2xl blur-lg opacity-30 group-hover:opacity-60 transition duration-1000 animate-pulse"></div>
+              <div className="relative flex flex-col gap-2 bg-black/40 backdrop-blur-2xl p-2 rounded-2xl border border-blue-400/30 shadow-2xl">
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
-                  className="w-full sm:flex-1 px-5 py-3 sm:px-6 sm:py-4 rounded-full bg-transparent border-none focus:outline-none text-white placeholder-gray-400 text-base"
+                  className="w-full px-5 py-3 rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:border-blue-400/50 text-white placeholder-gray-400 text-sm transition-all"
                 />
                 <button
                   onClick={handleSubmit}
-                  className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 text-white rounded-full font-semibold hover:shadow-2xl hover:shadow-blue-500/60 transition-all transform hover:scale-105 active:scale-95 whitespace-nowrap"
+                  disabled={isLoading}
+                  className="w-full px-6 py-3 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 text-white rounded-xl font-semibold hover:shadow-2xl hover:shadow-blue-500/60 transition-all transform hover:scale-105 active:scale-95 text-sm disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                 >
-                  Notify Me
+                  {isLoading ? 'Submitting...' : 'Notify Me'}
                 </button>
               </div>
               {submitted && (
-                <p className="mt-4 text-blue-400 font-medium animate-bounce drop-shadow-lg">Thanks! We'll notify you soon! ✨</p>
+                <p className="mt-4 text-blue-400 font-medium animate-bounce drop-shadow-lg text-sm">Thanks! We'll notify you soon! ✨</p>
+              )}
+              {error && (
+                <p className="mt-4 text-red-400 font-medium text-sm">{error}</p>
               )}
             </div>
             
