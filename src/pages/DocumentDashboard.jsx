@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom'; // Added imports
+import { useLocation, useNavigate } from 'react-router-dom';
+import { FaBriefcase, FaDollarSign, FaBox, FaCode, FaFilePdf, FaFileWord, FaFileExcel, FaFile, FaSignOutAlt, FaDownload, FaChevronDown } from 'react-icons/fa'; // Added imports for react-icons
 
-export default function DocumentDashboard() { // Removed unused props; we'll get from location state
+export default function DocumentDashboard() {
   const [expandedCategory, setExpandedCategory] = useState(null);
-  const location = useLocation(); // Added to get state
-  const navigate = useNavigate(); // Added for logout
-  const userData = location.state?.userData; // Get userData from navigation state
+  const location = useLocation();
+  const navigate = useNavigate();
+  const userData = location.state?.userData;
 
   useEffect(() => {
     if (typeof window !== 'undefined' && window.AOS) {
@@ -46,24 +47,16 @@ export default function DocumentDashboard() { // Removed unused props; we'll get
 
   const categoryIcons = {
     Management: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-      </svg>
+      <FaBriefcase className="w-6 h-6" />
     ),
     Finance: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
+      <FaDollarSign className="w-6 h-6" />
     ),
     Product: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-      </svg>
+      <FaBox className="w-6 h-6" />
     ),
     Development: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-      </svg>
+      <FaCode className="w-6 h-6" />
     ),
   };
 
@@ -82,27 +75,19 @@ export default function DocumentDashboard() { // Removed unused props; we'll get
     switch(type) {
       case 'PDF':
         return (
-          <svg className="w-8 h-8 text-red-400" fill="currentColor" viewBox="0 0 20 20">
-            <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
-          </svg>
+          <FaFilePdf className="w-8 h-8 text-red-400" />
         );
       case 'DOCX':
         return (
-          <svg className="w-8 h-8 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
-            <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
-          </svg>
+          <FaFileWord className="w-8 h-8 text-blue-400" />
         );
       case 'XLSX':
         return (
-          <svg className="w-8 h-8 text-green-400" fill="currentColor" viewBox="0 0 20 20">
-            <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
-          </svg>
+          <FaFileExcel className="w-8 h-8 text-green-400" />
         );
       default:
         return (
-          <svg className="w-8 h-8 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-            <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
-          </svg>
+          <FaFile className="w-8 h-8 text-gray-400" />
         );
     }
   };
@@ -127,9 +112,7 @@ export default function DocumentDashboard() { // Removed unused props; we'll get
             onClick={handleLogout}
             className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition-colors text-sm flex items-center gap-2"
           >
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-            </svg>
+            <FaSignOutAlt className="w-4 h-4" />
             Sign Out
           </button>
         </div>
@@ -167,14 +150,9 @@ export default function DocumentDashboard() { // Removed unused props; we'll get
                       <p className="text-slate-400 text-sm">{documents.length} documents available</p>
                     </div>
                   </div>
-                  <svg
+                  <FaChevronDown
                     className={`w-6 h-6 text-slate-400 transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
+                  />
                 </button>
 
                 {/* Document Grid (Expands on click) */}
@@ -204,9 +182,7 @@ export default function DocumentDashboard() { // Removed unused props; we'll get
                             </div>
                             <p className="text-xs text-slate-500 mt-2">{doc.date}</p>
                           </div>
-                          <svg className="w-5 h-5 text-slate-600 group-hover:text-blue-400 transition-colors flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                          </svg>
+                          <FaDownload className="w-5 h-5 text-slate-600 group-hover:text-blue-400 transition-colors flex-shrink-0" />
                         </div>
                       </a>
                     ))}
