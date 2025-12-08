@@ -24,7 +24,7 @@ export default function LandingPage() {
   // Typewriter effect
   useEffect(() => {
     const typingSpeed = isDeleting ? 150 : 150;
-    const pauseTime = 2000;
+    const pauseTime = 3000;
 
     const timeout = setTimeout(() => {
       if (!isDeleting && displayText === fullText) {
@@ -155,7 +155,7 @@ export default function LandingPage() {
           </div>
 
           {/* Main Heading - Smaller */}
-          <h1 className="text-4xl md:text-7xl font-black text-center mb-6">
+          <h1 className="text-4xl md:text-6xl font-black text-center mb-6">
             <span className="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent drop-shadow-2xl font-pacifico animate-textGlow">
               {displayText}
               <span className="animate-blink">|</span>
