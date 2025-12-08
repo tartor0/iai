@@ -19,7 +19,7 @@ export default function LandingPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!email || !email.includes('@')) {
       setError('Please enter a valid email address');
       return;
@@ -38,14 +38,14 @@ export default function LandingPage() {
 
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
-      
+
       setSubmitted(true);
       setEmail('');
-      
+
       setTimeout(() => {
         window.location.href = '/progress';
       }, 3000);
-      
+
     } catch (err) {
       console.error('Error:', err);
       setError('Something went wrong. Please try again.');
@@ -57,17 +57,17 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen relative overflow-hidden">
       {/* Background Image with Overlay */}
-      <div 
+      <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: 'url(https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072)',
         }}
       />
       <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-indigo-900/70 to-black/90" />
-      
+
       {/* Animated Overlay Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div 
+        <div
           className="absolute w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"
           style={{
             top: '10%',
@@ -75,7 +75,7 @@ export default function LandingPage() {
             transform: `translate(${mousePos.x * 0.02}px, ${mousePos.y * 0.02}px)`
           }}
         />
-        <div 
+        <div
           className="absolute w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse"
           style={{
             bottom: '10%',
@@ -84,7 +84,7 @@ export default function LandingPage() {
             transform: `translate(${mousePos.x * -0.02}px, ${mousePos.y * -0.02}px)`
           }}
         />
-        <div 
+        <div
           className="absolute w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl animate-pulse"
           style={{
             top: '50%',
@@ -98,7 +98,7 @@ export default function LandingPage() {
       {/* Main Content */}
       <div className="relative font-poppins-med z-10 container mx-auto px-6 py-16 flex flex-col items-center justify-center min-h-screen">
         <Navbar />
-        
+
         {/* Main Heading with Cursive Font */}
         <h1 className="text-7xl pt-32 md:text-8xl lg:text-8xl font-black text-center mb-8 relative">
           <span className="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent drop-shadow-2xl font-pacifico">
@@ -112,44 +112,44 @@ export default function LandingPage() {
         </p>
 
         {/* Email Form with Enhanced Glow */}
-<div className="w-full max-w-md mb-16 relative group">
-  <div className="absolute -inset-1 rounded-2xl blur-lg opacity-30 group-hover:opacity-60 transition duration-1000"></div>
-  <div className="relative flex flex-col gap-2 bg-black/40 backdrop-blur-2xl p-2 rounded-2xl border border-blue-400/30 shadow-2xl">
-    <input
-      type="email"
-      value={email}
-      onChange={(e) => setEmail(e.target.value)}
-      placeholder="Enter your email"
-      className="w-full px-5 py-3 rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:border-blue-400/50 text-white placeholder-gray-400 transition-all"
-      disabled={loading}
-    />
-    <button
-      onClick={handleSubmit}
-      disabled={loading}
-      className="w-full px-6 py-3 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 text-white rounded-xl font-semibold  transition-all transform hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
-    >
-      {loading ? 'Submitting...' : 'Notify Me'}
-    </button>
-  </div>
+        <div className="w-full max-w-md mb-16 relative group">
+          <div className="absolute -inset-1 rounded-2xl blur-lg opacity-30 group-hover:opacity-60 transition duration-1000"></div>
+          <div className="relative flex flex-col gap-2 bg-black/40 backdrop-blur-2xl p-2 rounded-2xl border border-blue-400/30 shadow-2xl">
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your email"
+              className="w-full px-5 py-3 rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:border-blue-400/50 text-white placeholder-gray-400 transition-all"
+              disabled={loading}
+            />
+            <button
+              onClick={handleSubmit}
+              disabled={loading}
+              className="w-full px-6 py-3 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 text-white rounded-xl font-semibold  transition-all transform hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+            >
+              {loading ? 'Submitting...' : 'Notify Me'}
+            </button>
+          </div>
 
-  {error && (
-    <div className="mt-4 p-4 bg-red-500/10 border border-red-500/30 rounded-xl text-red-400 text-sm flex items-center gap-2">
-      <FaTimesCircle className="w-5 h-5" />
-      {error}
-    </div>
-  )}
+          {error && (
+            <div className="mt-4 p-4 bg-red-500/10 border border-red-500/30 rounded-xl text-red-400 text-sm flex items-center gap-2">
+              <FaTimesCircle className="w-5 h-5" />
+              {error}
+            </div>
+          )}
 
-  {submitted && (
-    <div className="mt-4 p-4 bg-green-500/10 border border-green-500/30 rounded-xl text-green-400 flex items-center gap-2 animate-bounce">
-      <FaCheckCircle className="w-5 h-5" />
-      Thanks! You will be redirected now!
-    </div>
-  )}
+          {submitted && (
+            <div className="mt-4 p-4 bg-green-500/10 border border-green-500/30 rounded-xl text-green-400 flex items-center gap-2 animate-bounce">
+              <FaCheckCircle className="w-5 h-5" />
+              Thanks! You will be redirected now!
+            </div>
+          )}
 
-  <p className="text-center text-gray-400 text-sm mt-4">
-    Join <span className="text-white font-semibold">10,000+</span> people on the waitlist
-  </p>
-</div>
+          <p className="text-center text-gray-400 text-sm mt-4">
+            Join <span className="text-white font-semibold">10,000+</span> people on the waitlist
+          </p>
+        </div>
 
         {/* Platform Features - Compressed */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl mx-auto mb-12">
@@ -205,7 +205,7 @@ export default function LandingPage() {
             </div>
           ))}
         </div>
-      </div>  
+      </div>
 
       {/* Footer */}
       <footer className="relative z-10 py-8 text-center text-gray-400 border-t border-white/10">
