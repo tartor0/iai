@@ -33,7 +33,7 @@ export default function LandingPage() {
 
       setSubmitted(true);
       setEmail('');
-
+      
       // Auto-hide success message after 3 seconds
       setTimeout(() => {
         setSubmitted(false);
@@ -53,7 +53,7 @@ export default function LandingPage() {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: 'url(https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072)',
+          backgroundImage: 'ur[](https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072)',
         }}
       />
       <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-indigo-900/70 to-black/90" />
@@ -93,16 +93,16 @@ export default function LandingPage() {
         <Navbar />
 
         {/* Content Container - Centered */}
-        <div className="flex-1 flex flex-col items-center justify-center px-6 -mt-8">
+        <div className="flex-1 flex flex-col items-center justify-center px-6 py-4 -mt-8">
 
-          <div className="mb-8">
+          <div className="mb-6">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/20 border border-green-500/50 rounded-full">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-ping"></div>
               <span className="text-sm font-semibold text-green-400">Multichannel Experience</span>
             </div>
           </div>
           {/* Platform Features - Compact Icons Only */}
-          <div className="flex gap-6 mb-4">
+          <div className="flex gap-6 mb-6">
             {/* Web */}
             <div className="group relative">
               <div className="w-16 h-16 bg-black/30 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-blue-400/50 transition-all duration-300 hover:scale-110 flex items-center justify-center">
@@ -128,23 +128,20 @@ export default function LandingPage() {
             </div>
           </div>
 
-          {/* Multichannel Experience Tag - Right after icons */}
-
-
           {/* Main Heading - Smaller */}
-          <h1 className="text-4xl md:text-5xl font-black text-center mb-4 leading-[1.2]">
-            <span className="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent drop-shadow-2xl font-pacifico">
+          <h1 className="text-4xl md:text-7xl font-black text-center mb-4">
+            <span className="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent drop-shadow-2xl font-pacifico animate-textGlow">
               Unveiling Soon!
             </span>
           </h1>
 
           {/* Subheading */}
-          <p className="text-base md:text-lg text-gray-200 text-center max-w-xl mb-8 leading-relaxed">
-            Ai is here to simplify your <span className="text-blue-400 font-semibold">insurance</span> – say goodbye to <span className="text-purple-400 font-semibold">complexity!</span>
+          <p className="text-base md:text-lg text-gray-200 text-center max-w-xl mb-6 leading-relaxed">
+            AI is here to simplify your <span className="text-blue-400 font-semibold">insurance</span> – say goodbye to <span className="text-purple-400 font-semibold">complexity!</span>
           </p>
 
           {/* Email Form - Compact */}
-          <div className="w-full max-w-md mb-8 relative group">
+          <div className="w-full max-w-md mb-6 relative group">
             <div className="relative flex gap-2 bg-black/40 backdrop-blur-2xl p-2 rounded-2xl border border-blue-400/30 shadow-2xl">
               <input
                 type="email"
@@ -185,7 +182,7 @@ export default function LandingPage() {
                 </div>
                 <div>
                   <p className="text-white font-bold text-sm">Success!</p>
-                  <p className="text-white/90 text-xs">On board for an Amazing Experience</p>
+                  <p className="text-white/90 text-xs">You're on the waitlist 🎉</p>
                 </div>
               </div>
             </div>
@@ -206,7 +203,7 @@ export default function LandingPage() {
               </div>
             ))}
           </div>
-        </div>
+        </div>  
       </div>
 
       {/* Add animations */}
@@ -230,6 +227,19 @@ export default function LandingPage() {
         }
         .animate-slideDown {
           animation: slideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        @keyframes textGlow {
+          0%, 100% { 
+            opacity: 1;
+            filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.6));
+          }
+          50% { 
+            opacity: 0.85;
+            filter: drop-shadow(0 0 30px rgba(168, 85, 247, 0.9));
+          }
+        }
+        .animate-textGlow {
+          animation: textGlow 2s ease-in-out infinite;
         }
       `}</style>
     </div>
