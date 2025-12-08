@@ -29,21 +29,14 @@ export default function LandingPage() {
     setError('');
 
     try {
-      // TODO: Replace with your API endpoint
-      // const response = await fetch('/api/waitlist', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({ email })
-      // });
-
-      // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
 
       setSubmitted(true);
       setEmail('');
 
+      // Auto-hide success message after 3 seconds
       setTimeout(() => {
-        window.location.href = '/progress';
+        setSubmitted(false);
       }, 3000);
 
     } catch (err) {
@@ -55,7 +48,7 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="min-h-screen relative overflow-hidden">
+    <div className="h-screen relative overflow-hidden">
       {/* Background Image with Overlay */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -96,130 +89,147 @@ export default function LandingPage() {
       </div>
 
       {/* Main Content */}
-      <div className="relative font-poppins-med z-10 container mx-auto px-6 py-16 flex flex-col items-center justify-center min-h-screen">
+      <div className="relative font-poppins-med z-10 h-full flex flex-col">
         <Navbar />
 
-        {/* Main Heading with Cursive Font */}
-        <h1 className="text-7xl pt-32 md:text-8xl lg:text-8xl font-black text-center mb-8 relative">
-          <span className="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent drop-shadow-2xl font-pacifico">
-            Unveiling Soon!
-          </span>
-        </h1>
+        {/* Content Container - Centered */}
+        <div className="flex-1 flex flex-col items-center justify-center px-6 -mt-8">
 
-        {/* Subheading */}
-        <p className="text-xl md:text-2xl text-gray-200 text-center max-w-2xl mb-12 leading-relaxed drop-shadow-lg animate-fade-in">
-          AI is here to simplify your <span className="text-blue-400 font-semibold">insurance</span> – say goodbye to <span className="text-purple-400 font-semibold">complexity!</span>
-        </p>
+          <div className="mb-8">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/20 border border-green-500/50 rounded-full">
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-ping"></div>
+              <span className="text-sm font-semibold text-green-400">Multichannel Experience</span>
+            </div>
+          </div>
+          {/* Platform Features - Compact Icons Only */}
+          <div className="flex gap-6 mb-4">
+            {/* Web */}
+            <div className="group relative">
+              <div className="w-16 h-16 bg-black/30 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-blue-400/50 transition-all duration-300 hover:scale-110 flex items-center justify-center">
+                <FaGlobe className="w-7 h-7 text-blue-400" />
+              </div>
+              <p className="text-center text-white text-xs mt-2 font-semibold">Web</p>
+            </div>
 
-        {/* Email Form with Enhanced Glow */}
-        <div className="w-full max-w-md mb-16 relative group">
-          <div className="absolute -inset-1 rounded-2xl blur-lg opacity-30 group-hover:opacity-60 transition duration-1000"></div>
-          <div className="relative flex flex-col gap-2 bg-black/40 backdrop-blur-2xl p-2 rounded-2xl border border-blue-400/30 shadow-2xl">
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email"
-              className="w-full px-5 py-3 rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:border-blue-400/50 text-white placeholder-gray-400 transition-all"
-              disabled={loading}
-            />
-            <button
-              onClick={handleSubmit}
-              disabled={loading}
-              className="w-full px-6 py-3 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 text-white rounded-xl font-semibold  transition-all transform hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
-            >
-              {loading ? 'Submitting...' : 'Notify Me'}
-            </button>
+            {/* Mobile */}
+            <div className="group relative">
+              <div className="w-16 h-16 bg-black/30 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-purple-400/50 transition-all duration-300 hover:scale-110 flex items-center justify-center">
+                <FaMobile className="w-7 h-7 text-purple-400" />
+              </div>
+              <p className="text-center text-white text-xs mt-2 font-semibold">Mobile</p>
+            </div>
+
+            {/* APIs */}
+            <div className="group relative">
+              <div className="w-16 h-16 bg-black/30 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-indigo-400/50 transition-all duration-300 hover:scale-110 flex items-center justify-center">
+                <FaCode className="w-7 h-7 text-indigo-400" />
+              </div>
+              <p className="text-center text-white text-xs mt-2 font-semibold">APIs</p>
+            </div>
           </div>
 
-          {error && (
-            <div className="mt-4 p-4 bg-red-500/10 border border-red-500/30 rounded-xl text-red-400 text-sm flex items-center gap-2">
-              <FaTimesCircle className="w-5 h-5" />
-              {error}
-            </div>
-          )}
+          {/* Multichannel Experience Tag - Right after icons */}
 
-          {submitted && (
-            <div className="mt-4 p-4 bg-green-500/10 border border-green-500/30 rounded-xl text-green-400 flex items-center gap-2 animate-bounce">
-              <FaCheckCircle className="w-5 h-5" />
-              You will be redirected now!
-            </div>
-          )}
 
-          <p className="text-center text-gray-400 text-sm mt-4">
-            Join <span className="text-white font-semibold">10,000+</span> people on the waitlist
+          {/* Main Heading - Smaller */}
+          <h1 className="text-4xl md:text-5xl font-black text-center mb-4 leading-[1.2]">
+            <span className="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent drop-shadow-2xl font-pacifico">
+              Unveiling Soon!
+            </span>
+          </h1>
+
+          {/* Subheading */}
+          <p className="text-base md:text-lg text-gray-200 text-center max-w-xl mb-8 leading-relaxed">
+            AI is here to simplify your <span className="text-blue-400 font-semibold">insurance</span> – say goodbye to <span className="text-purple-400 font-semibold">complexity!</span>
           </p>
-        </div>
 
-        {/* Platform Features - Compressed */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl mx-auto mb-12">
-          {/* Web */}
-          <div className="group relative p-6 bg-black/30 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-blue-400/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/30">
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/0 to-purple-500/0 group-hover:from-blue-500/10 group-hover:to-purple-500/10 rounded-2xl transition-all duration-500"></div>
-            <div className="relative flex flex-col items-center text-center">
-              <div className="w-16 h-16 bg-blue-500/10 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform border border-blue-400/20">
-                <FaGlobe className="w-8 h-8 text-blue-400" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-2">Web</h3>
-              <p className="text-gray-300 text-sm">Access anywhere, anytime through your browser</p>
+          {/* Email Form - Compact */}
+          <div className="w-full max-w-md mb-8 relative group">
+            <div className="relative flex gap-2 bg-black/40 backdrop-blur-2xl p-2 rounded-2xl border border-blue-400/30 shadow-2xl">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email"
+                className="flex-1 px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:border-blue-400/50 text-white placeholder-gray-400 transition-all text-sm"
+                disabled={loading}
+              />
+              <button
+                onClick={handleSubmit}
+                disabled={loading}
+                className="px-6 py-2.5 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 text-white rounded-xl font-semibold text-sm transition-all transform hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+              >
+                {loading ? 'Submitting...' : 'Notify Me'}
+              </button>
             </div>
+
+            {/* Error Message */}
+            {error && (
+              <div className="absolute left-0 right-0 mt-3 p-3 bg-red-500/10 border border-red-500/30 rounded-xl text-red-400 text-xs flex items-center gap-2">
+                <FaTimesCircle className="w-4 h-4" />
+                {error}
+              </div>
+            )}
+
+            <p className="text-center text-gray-400 text-xs mt-3">
+              Join <span className="text-white font-semibold">10,000+</span> people on the waitlist
+            </p>
           </div>
 
-          {/* Mobile */}
-          <div className="group relative p-6 bg-black/30 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-purple-400/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/30">
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/0 to-pink-500/0 group-hover:from-purple-500/10 group-hover:to-pink-500/10 rounded-2xl transition-all duration-500"></div>
-            <div className="relative flex flex-col items-center text-center">
-              <div className="w-16 h-16 bg-purple-500/10 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform border border-purple-400/20">
-                <FaMobile className="w-8 h-8 text-purple-400" />
+          {/* Success Toast - Fixed Position */}
+          {submitted && (
+            <div className="fixed top-8 left-1/2 -translate-x-1/2 z-50 animate-slideDown">
+              <div className="bg-gradient-to-r from-green-500/90 to-emerald-500/90 backdrop-blur-xl px-6 py-4 rounded-2xl shadow-2xl border border-green-400/50 flex items-center gap-3">
+                <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+                  <FaCheckCircle className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <p className="text-white font-bold text-sm">Success!</p>
+                  <p className="text-white/90 text-xs">On board for an Amazing Experience</p>
+                </div>
               </div>
-              <h3 className="text-xl font-bold text-white mb-2">Mobile</h3>
-              <p className="text-gray-300 text-sm">Native apps for iOS and Android devices</p>
             </div>
-          </div>
+          )}
 
-          {/* APIs */}
-          <div className="group relative p-6 bg-black/30 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-indigo-400/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-indigo-500/30">
-            <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/0 to-blue-500/0 group-hover:from-indigo-500/10 group-hover:to-blue-500/10 rounded-2xl transition-all duration-500"></div>
-            <div className="relative flex flex-col items-center text-center">
-              <div className="w-16 h-16 bg-indigo-500/10 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform border border-indigo-400/20">
-                <FaCode className="w-8 h-8 text-indigo-400" />
+          {/* Stats Section - Compact */}
+          <div className="flex gap-12 text-center">
+            {[
+              { num: '10K+', label: 'Waitlist Members' },
+              { num: '50+', label: 'Countries' },
+              { num: '24/7', label: 'Support' }
+            ].map((stat, i) => (
+              <div key={i} className="group">
+                <div className="text-3xl font-black bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent mb-1 group-hover:scale-110 transition-transform duration-300">
+                  {stat.num}
+                </div>
+                <div className="text-gray-300 text-xs">{stat.label}</div>
               </div>
-              <h3 className="text-xl font-bold text-white mb-2">APIs</h3>
-              <p className="text-gray-300 text-sm">Powerful APIs for seamless integration</p>
-            </div>
+            ))}
           </div>
-        </div>
-
-        {/* Stats Section */}
-        <div className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-          {[
-            { num: '10K+', label: 'Waitlist Members' },
-            { num: '50+', label: 'Countries' },
-            { num: '24/7', label: 'Support' }
-          ].map((stat, i) => (
-            <div key={i} className="group">
-              <div className="text-5xl font-black bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300 drop-shadow-lg">
-                {stat.num}
-              </div>
-              <div className="text-gray-300 text-sm">{stat.label}</div>
-            </div>
-          ))}
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className="relative z-10 py-8 text-center text-gray-400 border-t border-white/10">
-        <p>© 2025 IAI. All rights reserved.</p>
-      </footer>
-
-      {/* Add fonts and animations */}
+      {/* Add animations */}
       <style jsx>{`
-        @keyframes fade-in {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
+        @keyframes ping {
+          0% { transform: scale(1); opacity: 1; }
+          75%, 100% { transform: scale(2); opacity: 0; }
         }
-        .animate-fade-in {
-          animation: fade-in 1s ease-out;
+        .animate-ping {
+          animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+        @keyframes slideDown {
+          0% { 
+            transform: translate(-50%, -100%);
+            opacity: 0;
+          }
+          100% { 
+            transform: translate(-50%, 0);
+            opacity: 1;
+          }
+        }
+        .animate-slideDown {
+          animation: slideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
       `}</style>
     </div>

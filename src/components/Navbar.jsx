@@ -18,7 +18,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between pr-20">
           <Link to="/" className="text-2xl font-bold bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
-            Insurance + AI
+            Insurance + Ai
           </Link>
           
           <div className="hidden md:flex items-center space-x-8">
