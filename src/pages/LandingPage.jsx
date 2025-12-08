@@ -8,6 +8,10 @@ export default function LandingPage() {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [displayText, setDisplayText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+  
+  const fullText = 'Unveiling Soon!';
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -16,6 +20,28 @@ export default function LandingPage() {
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
+
+  // Typewriter effect
+  useEffect(() => {
+    const typingSpeed = isDeleting ? 150 : 150;
+    const pauseTime = 2000;
+
+    const timeout = setTimeout(() => {
+      if (!isDeleting && displayText === fullText) {
+        setTimeout(() => setIsDeleting(true), pauseTime);
+      } else if (isDeleting && displayText === '') {
+        setIsDeleting(false);
+      } else if (isDeleting) {
+        // Delete character
+        setDisplayText(fullText.substring(0, displayText.length - 1));
+      } else {
+        // Add character
+        setDisplayText(fullText.substring(0, displayText.length + 1));
+      }
+    }, typingSpeed);
+
+    return () => clearTimeout(timeout);
+  }, [displayText, isDeleting]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -53,7 +79,7 @@ export default function LandingPage() {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: 'ur[](https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072)',
+          backgroundImage: 'url(https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072)',
         }}
       />
       <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-indigo-900/70 to-black/90" />
@@ -98,7 +124,7 @@ export default function LandingPage() {
           <div className="mb-6">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/20 border border-green-500/50 rounded-full">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-ping"></div>
-              <span className="text-sm font-semibold text-green-400">Multichannel Experience</span>
+              <span className="text-sm font-semibold text-green-400">Multi-channel Experience</span>
             </div>
           </div>
           {/* Platform Features - Compact Icons Only */}
@@ -131,13 +157,14 @@ export default function LandingPage() {
           {/* Main Heading - Smaller */}
           <h1 className="text-4xl md:text-7xl font-black text-center mb-6">
             <span className="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent drop-shadow-2xl font-pacifico animate-textGlow">
-              Unveiling Soon!
+              {displayText}
+              <span className="animate-blink">|</span>
             </span>
           </h1>
 
           {/* Subheading */}
           <p className="text-base md:text-lg text-gray-200 text-center max-w-xl mb-6 leading-relaxed">
-            AI is here to simplify your <span className="text-blue-400 font-semibold">insurance</span> – say goodbye to <span className="text-purple-400 font-semibold">complexity!</span>
+            Ai is here to simplify your <span className="text-blue-400 font-semibold">insurance</span> – say goodbye to <span className="text-purple-400 font-semibold">complexity!</span>
           </p>
 
           {/* Email Form - Compact */}
@@ -240,6 +267,13 @@ export default function LandingPage() {
         }
         .animate-textGlow {
           animation: textGlow 2s ease-in-out infinite;
+        }
+        @keyframes blink {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0; }
+        }
+        .animate-blink {
+          animation: blink 3s step-end infinite;
         }
       `}</style>
     </div>
