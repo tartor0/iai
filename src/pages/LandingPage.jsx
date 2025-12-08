@@ -140,7 +140,7 @@ export default function LandingPage() {
 
           {/* Subheading */}
           <p className="text-base md:text-lg text-gray-200 text-center max-w-xl mb-8 leading-relaxed">
-            AI is here to simplify your <span className="text-blue-400 font-semibold">insurance</span> – say goodbye to <span className="text-purple-400 font-semibold">complexity!</span>
+            Ai is here to simplify your <span className="text-blue-400 font-semibold">insurance</span> – say goodbye to <span className="text-purple-400 font-semibold">complexity!</span>
           </p>
 
           {/* Email Form - Compact */}
