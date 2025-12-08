@@ -142,7 +142,7 @@ export default function LandingPage() {
           {submitted && (
             <div className="mt-4 p-4 bg-green-500/10 border border-green-500/30 rounded-xl text-green-400 flex items-center gap-2 animate-bounce">
               <FaCheckCircle className="w-5 h-5" />
-              Thanks! You will be redirected now!
+              You will be redirected now!
             </div>
           )}
 
