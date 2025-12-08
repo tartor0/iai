@@ -129,7 +129,7 @@ export default function LandingPage() {
           </div>
 
           {/* Main Heading - Smaller */}
-          <h1 className="text-4xl md:text-7xl font-black text-center mb-4">
+          <h1 className="text-4xl md:text-7xl font-black text-center mb-6">
             <span className="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent drop-shadow-2xl font-pacifico animate-textGlow">
               Unveiling Soon!
             </span>
@@ -182,7 +182,7 @@ export default function LandingPage() {
                 </div>
                 <div>
                   <p className="text-white font-bold text-sm">Success!</p>
-                  <p className="text-white/90 text-xs">You're on the waitlist 🎉</p>
+                  <p className="text-white/90 text-xs">On board for an Amazing Experience</p>
                 </div>
               </div>
             </div>
