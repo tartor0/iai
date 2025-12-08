@@ -273,7 +273,7 @@ export default function LandingPage() {
           50% { opacity: 0; }
         }
         .animate-blink {
-          animation: blink 3s step-end infinite;
+          animation: blink 0.5s step-end infinite;
         }
       `}</style>
     </div>
