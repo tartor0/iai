@@ -32,10 +32,8 @@ export default function LandingPage() {
       } else if (isDeleting && displayText === '') {
         setIsDeleting(false);
       } else if (isDeleting) {
-        // Delete character
         setDisplayText(fullText.substring(0, displayText.length - 1));
       } else {
-        // Add character
         setDisplayText(fullText.substring(0, displayText.length + 1));
       }
     }, typingSpeed);
@@ -60,7 +58,6 @@ export default function LandingPage() {
       setSubmitted(true);
       setEmail('');
       
-      // Auto-hide success message after 3 seconds
       setTimeout(() => {
         setSubmitted(false);
       }, 3000);
@@ -119,43 +116,44 @@ export default function LandingPage() {
         <Navbar />
 
         {/* Content Container - Centered */}
-        <div className="flex-1 flex flex-col items-center justify-center px-6 py-4 -mt-8">
+        <div className="flex-1 flex flex-col items-center justify-center px-4 sm:px-6 py-4 -mt-8 overflow-y-auto sm:overflow-y-visible">
 
-          <div className="mb-6">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/20 border border-green-500/50 rounded-full">
+          <div className="mb-4 sm:mb-6">
+            <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-green-500/20 border border-green-500/50 rounded-full">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-ping"></div>
-              <span className="text-sm font-semibold text-green-400">Multi-channel Experience</span>
+              <span className="text-xs sm:text-sm font-semibold text-green-400">Multi-channel Experience</span>
             </div>
           </div>
+
           {/* Platform Features - Compact Icons Only */}
-          <div className="flex gap-6 mb-6">
+          <div className="flex gap-4 sm:gap-6 mb-4 sm:mb-6">
             {/* Web */}
             <div className="group relative">
-              <div className="w-16 h-16 bg-black/30 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-blue-400/50 transition-all duration-300 hover:scale-110 flex items-center justify-center">
-                <FaGlobe className="w-7 h-7 text-blue-400" />
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-black/30 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-blue-400/50 transition-all duration-300 hover:scale-110 flex items-center justify-center">
+                <FaGlobe className="w-5 h-5 sm:w-7 sm:h-7 text-blue-400" />
               </div>
-              <p className="text-center text-white text-xs mt-2 font-semibold">Web</p>
+              <p className="text-center text-white text-[10px] sm:text-xs mt-1 sm:mt-2 font-semibold">Web</p>
             </div>
 
             {/* Mobile */}
             <div className="group relative">
-              <div className="w-16 h-16 bg-black/30 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-purple-400/50 transition-all duration-300 hover:scale-110 flex items-center justify-center">
-                <FaMobile className="w-7 h-7 text-purple-400" />
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-black/30 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-purple-400/50 transition-all duration-300 hover:scale-110 flex items-center justify-center">
+                <FaMobile className="w-5 h-5 sm:w-7 sm:h-7 text-purple-400" />
               </div>
-              <p className="text-center text-white text-xs mt-2 font-semibold">Mobile</p>
+              <p className="text-center text-white text-[10px] sm:text-xs mt-1 sm:mt-2 font-semibold">Mobile</p>
             </div>
 
             {/* APIs */}
             <div className="group relative">
-              <div className="w-16 h-16 bg-black/30 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-indigo-400/50 transition-all duration-300 hover:scale-110 flex items-center justify-center">
-                <FaCode className="w-7 h-7 text-indigo-400" />
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-black/30 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-indigo-400/50 transition-all duration-300 hover:scale-110 flex items-center justify-center">
+                <FaCode className="w-5 h-5 sm:w-7 sm:h-7 text-indigo-400" />
               </div>
-              <p className="text-center text-white text-xs mt-2 font-semibold">APIs</p>
+              <p className="text-center text-white text-[10px] sm:text-xs mt-1 sm:mt-2 font-semibold">APIs</p>
             </div>
           </div>
 
           {/* Main Heading - Smaller */}
-          <h1 className="text-4xl md:text-6xl font-black text-center mb-6">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-black text-center mb-3 sm:mb-6 px-2">
             <span className="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent drop-shadow-2xl font-pacifico animate-textGlow">
               {displayText}
               <span className="animate-blink">|</span>
@@ -163,70 +161,94 @@ export default function LandingPage() {
           </h1>
 
           {/* Subheading */}
-          <p className="text-base md:text-lg text-gray-200 text-center max-w-xl mb-6 leading-relaxed">
+          <p className="text-sm sm:text-base md:text-lg text-gray-200 text-center max-w-xl mb-4 sm:mb-6 leading-relaxed px-4">
             Ai is here to simplify your <span className="text-blue-400 font-semibold">insurance</span> – say goodbye to <span className="text-purple-400 font-semibold">complexity!</span>
           </p>
 
-          {/* Email Form - Compact */}
-          <div className="w-full max-w-md mb-6 relative group">
-            <div className="relative flex gap-2 bg-black/40 backdrop-blur-2xl p-2 rounded-2xl border border-blue-400/30 shadow-2xl">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:border-blue-400/50 text-white placeholder-gray-400 transition-all text-sm"
-                disabled={loading}
-              />
-              <button
-                onClick={handleSubmit}
-                disabled={loading}
-                className="px-6 py-2.5 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 text-white rounded-xl font-semibold text-sm transition-all transform hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
-              >
-                {loading ? 'Submitting...' : 'Notify Me'}
-              </button>
+          {/* Email Form - Responsive */}
+          <div className="w-full max-w-md mb-3 sm:mb-6 relative px-4">
+            {/* Desktop Form */}
+            <div className="hidden sm:block">
+              <div className="relative flex gap-2 bg-black/40 backdrop-blur-2xl p-2 rounded-2xl border border-blue-400/30 shadow-2xl">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your email"
+                  className="flex-1 px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:border-blue-400/50 text-white placeholder-gray-400 transition-all text-sm"
+                  disabled={loading}
+                />
+                <button
+                  onClick={handleSubmit}
+                  disabled={loading}
+                  className="px-6 py-2.5 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 text-white rounded-xl font-semibold text-sm transition-all transform hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                >
+                  {loading ? 'Submitting...' : 'Notify Me'}
+                </button>
+              </div>
+            </div>
+
+            {/* Mobile Form - Stacked */}
+            <div className="block sm:hidden">
+              <div className="bg-black/40 backdrop-blur-2xl p-3 rounded-2xl border border-blue-400/30 shadow-2xl space-y-2.5">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your email"
+                  className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:border-blue-400/50 text-white placeholder-gray-400 transition-all text-sm"
+                  disabled={loading}
+                />
+                <button
+                  onClick={handleSubmit}
+                  disabled={loading}
+                  className="w-full px-6 py-2.5 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 text-white rounded-xl font-semibold text-sm transition-all transform active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                >
+                  {loading ? 'Submitting...' : 'Notify Me'}
+                </button>
+              </div>
             </div>
 
             {/* Error Message */}
             {error && (
-              <div className="absolute left-0 right-0 mt-3 p-3 bg-red-500/10 border border-red-500/30 rounded-xl text-red-400 text-xs flex items-center gap-2">
-                <FaTimesCircle className="w-4 h-4" />
-                {error}
+              <div className="absolute left-4 right-4 mt-3 p-3 bg-red-500/10 border border-red-500/30 rounded-xl text-red-400 text-xs flex items-center gap-2">
+                <FaTimesCircle className="w-4 h-4 flex-shrink-0" />
+                <span>{error}</span>
               </div>
             )}
 
-            <p className="text-center text-gray-400 text-xs mt-3">
+            <p className="text-center text-gray-400 text-xs mt-2 sm:mt-3">
               Join <span className="text-white font-semibold">10,000+</span> people on the waitlist
             </p>
           </div>
 
           {/* Success Toast - Fixed Position */}
           {submitted && (
-            <div className="fixed top-8 left-1/2 -translate-x-1/2 z-50 animate-slideDown">
-              <div className="bg-gradient-to-r from-green-500/90 to-emerald-500/90 backdrop-blur-xl px-6 py-4 rounded-2xl shadow-2xl border border-green-400/50 flex items-center gap-3">
-                <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
-                  <FaCheckCircle className="w-6 h-6 text-white" />
+            <div className="fixed top-8 left-1/2 -translate-x-1/2 z-50 animate-slideDown px-4 max-w-sm w-full">
+              <div className="bg-gradient-to-r from-green-500/90 to-emerald-500/90 backdrop-blur-xl px-4 sm:px-6 py-3 sm:py-4 rounded-2xl shadow-2xl border border-green-400/50 flex items-center gap-3">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
+                  <FaCheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                 </div>
                 <div>
-                  <p className="text-white font-bold text-sm">Success!</p>
-                  <p className="text-white/90 text-xs">On board for an Amazing Experience</p>
+                  <p className="text-white font-bold text-xs sm:text-sm">Success!</p>
+                  <p className="text-white/90 text-[10px] sm:text-xs">On board for an Amazing Experience</p>
                 </div>
               </div>
             </div>
           )}
 
-          {/* Stats Section - Compact */}
-          <div className="flex gap-12 text-center">
+          {/* Stats Section - Responsive */}
+          <div className="flex gap-6 sm:gap-12 text-center">
             {[
               { num: '10K+', label: 'Waitlist Members' },
               { num: '50+', label: 'Countries' },
               { num: '24/7', label: 'Support' }
             ].map((stat, i) => (
               <div key={i} className="group">
-                <div className="text-3xl font-black bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent mb-1 group-hover:scale-110 transition-transform duration-300">
+                <div className="text-2xl sm:text-3xl font-black bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent mb-1 group-hover:scale-110 transition-transform duration-300">
                   {stat.num}
                 </div>
-                <div className="text-gray-300 text-xs">{stat.label}</div>
+                <div className="text-gray-300 text-[10px] sm:text-xs">{stat.label}</div>
               </div>
             ))}
           </div>
