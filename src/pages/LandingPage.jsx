@@ -153,7 +153,7 @@ export default function LandingPage() {
           </div>
 
           {/* Main Heading - Smaller */}
-          <h1 className="text-3xl sm:text-4xl md:text-6xl font-black text-center mb-3 sm:mb-6 px-2">
+          <h1 className="text-6xl sm:text-6xl md:text-6xl font-black text-center mb-3 sm:mb-6 px-2">
             <span className="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent drop-shadow-2xl font-pacifico animate-textGlow">
               {displayText}
               <span className="animate-blink">|</span>
