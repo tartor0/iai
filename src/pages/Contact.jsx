@@ -138,7 +138,7 @@ export default function Contact() {
               {/* Contact Form */}
               <div className="lg:col-span-2">
                 <div className="bg-black/40 backdrop-blur-2xl border border-blue-400/30 p-8 rounded-2xl shadow-2xl">
-                  <div className="space-y-6">
+                  <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
                       <label className="block text-gray-300 text-sm font-medium mb-2">Name</label>
                       <input
@@ -199,13 +199,13 @@ export default function Contact() {
                     )}
 
                     <button
-                      onClick={handleSubmit}
+                      type="submit"
                       className="w-full py-4 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 text-white rounded-xl font-semibold hover:shadow-2xl hover:shadow-purple-500/30 transition-all transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2"
                     >
                       <IoSend className="w-5 h-5" />
                       Send Message
                     </button>
-                  </div>
+                  </form>
                 </div>
               </div>
             </div>

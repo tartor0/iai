@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { FaGlobe, FaMobile, FaCode, FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
+import { FaGlobe, FaMobile, FaCode, FaCheckCircle, FaTimesCircle, FaMapMarkerAlt } from 'react-icons/fa';
 import Navbar from '../components/Navbar';
 
 export default function LandingPage() {
@@ -10,6 +10,39 @@ export default function LandingPage() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [displayText, setDisplayText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
+  const [location, setLocation] = useState('');
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [expandedCountry, setExpandedCountry] = useState(null);
+
+  const usStates = [
+    'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 
+    'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 
+    'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 
+    'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 
+    'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 
+    'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 
+    'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 
+    'Wisconsin', 'Wyoming'
+  ];
+
+  const countries = [
+    { name: 'United States', states: usStates, flag: '🇺🇸' },
+    { name: 'Canada', states: ['Alberta', 'British Columbia', 'Manitoba', 'New Brunswick', 'Newfoundland and Labrador', 'Nova Scotia', 'Ontario', 'Prince Edward Island', 'Quebec', 'Saskatchewan'], flag: '🇨🇦' },
+    { name: 'Nigeria', states: ['Abia', 'Adamawa', 'Akwa Ibom', 'Anambra', 'Bauchi', 'Bayelsa', 'Benue', 'Borno', 'Cross River', 'Delta', 'Ebonyi', 'Enugu', 'Gombe', 'Imo', 'Jigawa', 'Kaduna', 'Kano', 'Katsina', 'Kebbi', 'Kogi', 'Kwara', 'Lagos', 'Nasarawa', 'Niger', 'Ogun', 'Ondo', 'Osun', 'Oyo', 'Plateau', 'Rivers', 'Sokoto', 'Taraba', 'Yobe', 'Zamfara'], flag: '🇳🇬' },
+    { name: 'United Kingdom', states: [], flag: '🇬🇧' },
+    { name: 'Australia', states: [], flag: '🇦🇺' },
+    { name: 'Germany', states: [], flag: '🇩🇪' },
+    { name: 'France', states: [], flag: '🇫🇷' },
+    { name: 'Japan', states: [], flag: '🇯🇵' },
+    { name: 'India', states: [], flag: '🇮🇳' },
+    { name: 'Brazil', states: [], flag: '🇧🇷' },
+    { name: 'Mexico', states: [], flag: '🇲🇽' },
+    { name: 'Spain', states: [], flag: '🇪🇸' },
+    { name: 'Italy', states: [], flag: '🇮🇹' },
+    { name: 'Netherlands', states: [], flag: '🇳🇱' },
+    { name: 'South Korea', states: [], flag: '🇰🇷' },
+    { name: 'Singapore', states: [], flag: '🇸🇬' }
+  ];
   
   const fullText = 'Unveiling Soon!';
 
@@ -21,7 +54,6 @@ export default function LandingPage() {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  // Typewriter effect
   useEffect(() => {
     const typingSpeed = isDeleting ? 150 : 150;
     const pauseTime = 3000;
@@ -72,7 +104,6 @@ export default function LandingPage() {
 
   return (
     <div className="h-screen relative overflow-hidden">
-      {/* Background Image with Overlay */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
@@ -81,7 +112,6 @@ export default function LandingPage() {
       />
       <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-indigo-900/70 to-black/90" />
 
-      {/* Animated Overlay Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div
           className="absolute w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"
@@ -111,11 +141,9 @@ export default function LandingPage() {
         />
       </div>
 
-      {/* Main Content */}
       <div className="relative font-poppins-med z-10 h-full flex flex-col">
         <Navbar />
 
-        {/* Content Container - Centered */}
         <div className="flex-1 flex flex-col items-center justify-center px-4 sm:px-6 py-4 -mt-8 overflow-y-auto sm:overflow-y-visible">
 
           <div className="mb-4 sm:mb-6">
@@ -125,9 +153,7 @@ export default function LandingPage() {
             </div>
           </div>
 
-          {/* Platform Features - Compact Icons Only */}
           <div className="flex gap-4 sm:gap-6 mb-4 sm:mb-6">
-            {/* Web */}
             <div className="group relative">
               <div className="w-12 h-12 sm:w-16 sm:h-16 bg-black/30 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-blue-400/50 transition-all duration-300 hover:scale-110 flex items-center justify-center">
                 <FaGlobe className="w-5 h-5 sm:w-7 sm:h-7 text-blue-400" />
@@ -135,7 +161,6 @@ export default function LandingPage() {
               <p className="text-center text-white text-[10px] sm:text-xs mt-1 sm:mt-2 font-semibold">Web</p>
             </div>
 
-            {/* Mobile */}
             <div className="group relative">
               <div className="w-12 h-12 sm:w-16 sm:h-16 bg-black/30 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-purple-400/50 transition-all duration-300 hover:scale-110 flex items-center justify-center">
                 <FaMobile className="w-5 h-5 sm:w-7 sm:h-7 text-purple-400" />
@@ -143,7 +168,6 @@ export default function LandingPage() {
               <p className="text-center text-white text-[10px] sm:text-xs mt-1 sm:mt-2 font-semibold">Mobile</p>
             </div>
 
-            {/* APIs */}
             <div className="group relative">
               <div className="w-12 h-12 sm:w-16 sm:h-16 bg-black/30 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-indigo-400/50 transition-all duration-300 hover:scale-110 flex items-center justify-center">
                 <FaCode className="w-5 h-5 sm:w-7 sm:h-7 text-indigo-400" />
@@ -152,22 +176,18 @@ export default function LandingPage() {
             </div>
           </div>
 
-          {/* Main Heading - Smaller */}
           <h1 className="text-6xl sm:text-6xl md:text-6xl font-black text-center mb-3 sm:mb-6 px-2">
-            <span className="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent drop-shadow-2xl font-pacifico animate-textGlow">
+            <span className="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent font-pacifico" style={{ filter: 'drop-shadow(0 0 10px rgba(168, 85, 247, 0.3))' }}>
               {displayText}
               <span className="animate-blink">|</span>
             </span>
           </h1>
 
-          {/* Subheading */}
           <p className="text-sm sm:text-base md:text-lg text-gray-200 text-center max-w-xl mb-4 sm:mb-6 leading-relaxed px-4">
             Ai is here to simplify your <span className="text-blue-400 font-semibold">insurance</span> – say goodbye to <span className="text-purple-400 font-semibold">complexity!</span>
           </p>
 
-          {/* Email Form - Responsive */}
           <div className="w-full max-w-md mb-3 sm:mb-6 relative px-4">
-            {/* Desktop Form */}
             <div className="hidden sm:block">
               <div className="relative flex gap-2 bg-black/40 backdrop-blur-2xl p-2 rounded-2xl border border-blue-400/30 shadow-2xl">
                 <input
@@ -188,7 +208,6 @@ export default function LandingPage() {
               </div>
             </div>
 
-            {/* Mobile Form - Stacked */}
             <div className="block sm:hidden">
               <div className="bg-black/40 backdrop-blur-2xl p-3 rounded-2xl border border-blue-400/30 shadow-2xl space-y-2.5">
                 <input
@@ -209,7 +228,6 @@ export default function LandingPage() {
               </div>
             </div>
 
-            {/* Error Message */}
             {error && (
               <div className="absolute left-4 right-4 mt-3 p-3 bg-red-500/10 border border-red-500/30 rounded-xl text-red-400 text-xs flex items-center gap-2">
                 <FaTimesCircle className="w-4 h-4 flex-shrink-0" />
@@ -222,7 +240,6 @@ export default function LandingPage() {
             </p>
           </div>
 
-          {/* Success Toast - Fixed Position */}
           {submitted && (
             <div className="fixed top-8 left-1/2 -translate-x-1/2 z-50 animate-slideDown px-4 max-w-sm w-full">
               <div className="bg-gradient-to-r from-green-500/90 to-emerald-500/90 backdrop-blur-xl px-4 sm:px-6 py-3 sm:py-4 rounded-2xl shadow-2xl border border-green-400/50 flex items-center gap-3">
@@ -237,25 +254,109 @@ export default function LandingPage() {
             </div>
           )}
 
-          {/* Stats Section - Responsive */}
           <div className="flex gap-6 sm:gap-12 text-center">
-            {[
-              { num: '10K+', label: 'Waitlist Members' },
-              { num: '50+', label: 'Countries' },
-              { num: '24/7', label: 'Support' }
-            ].map((stat, i) => (
-              <div key={i} className="group">
-                <div className="text-2xl sm:text-3xl font-black bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent mb-1 group-hover:scale-110 transition-transform duration-300">
-                  {stat.num}
-                </div>
-                <div className="text-gray-300 text-[10px] sm:text-xs">{stat.label}</div>
+            <div className="group">
+              <div className="text-2xl sm:text-3xl font-black bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent mb-1 group-hover:scale-110 transition-transform duration-300">
+                10K+
               </div>
-            ))}
+              <div className="text-gray-300 text-[10px] sm:text-xs">Waitlist Members</div>
+            </div>
+
+            {/* Redesigned Location Dropdown */}
+            <div className="group relative">
+              <div 
+                className="text-2xl sm:text-3xl font-black bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent mb-1 cursor-pointer group-hover:scale-110 transition-transform duration-300" 
+                onClick={() => setShowDropdown(!showDropdown)}
+              >
+                10+
+              </div>
+              <div 
+                className="text-gray-300 text-[10px] sm:text-xs cursor-pointer flex items-center justify-center gap-1" 
+                onClick={() => setShowDropdown(!showDropdown)}
+              >
+                <FaMapMarkerAlt className="w-2 h-2" />
+                Countries
+              </div>
+              
+              {showDropdown && (
+                <div className="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 w-64 z-50">
+                  <div className="bg-gray-800 backdrop-blur-2xl rounded-2xl border border-blue-400/20 shadow-2xl overflow-hidden">
+                    {/* Header */}
+                    <div className="px-4 py-3 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border-b border-blue-400/20">
+                      <p className="text-white font-semibold text-sm flex items-center gap-2">
+                        <FaMapMarkerAlt className="text-blue-400" />
+                        Available Locations
+                      </p>
+                    </div>
+                    
+                    {/* Scrollable Content */}
+                    <div className="max-h-64 overflow-y-auto scrollbar-thin scrollbar-thumb-blue-500/50 scrollbar-track-transparent">
+                      {countries.map((country, i) => (
+                        <div key={i}>
+                          <div
+                            onClick={() => {
+                              if (country.states.length === 0) {
+                                setLocation(country.name);
+                                setShowDropdown(false);
+                              } else {
+                                setExpandedCountry(expandedCountry === country.name ? null : country.name);
+                              }
+                            }}
+                            className={`px-4 py-3 text-white text-sm hover:bg-gray-700 cursor-pointer transition-all flex justify-between items-center group/item ${
+                              expandedCountry === country.name ? 'bg-blue-500/10' : ''
+                            }`}
+                          >
+                            <div className="flex items-center gap-3">
+                              <span className="text-xl">{country.flag}</span>
+                              <span className="font-medium">{country.name}</span>
+                            </div>
+                            {country.states.length > 0 && (
+                              <div className={`w-6 h-6 rounded-full bg-blue-500/20 flex items-center justify-center transition-transform ${
+                                expandedCountry === country.name ? 'rotate-180' : ''
+                              }`}>
+                                <span className="text-blue-400 text-xs">▼</span>
+                              </div>
+                            )}
+                          </div>
+                          
+                          {expandedCountry === country.name && country.states.length > 0 && (
+                            <div className="bg-black/30 border-t border-b border-blue-400/10">
+                              <div className="max-h-40 overflow-y-auto">
+                                {country.states.map((state, j) => (
+                                  <div
+                                    key={j}
+                                    onClick={() => {
+                                      setLocation(`${state}, ${country.name}`);
+                                      setShowDropdown(false);
+                                      setExpandedCountry(null);
+                                    }}
+                                    className="pl-12 pr-4 py-2.5 text-gray-300 text-xs hover:bg-blue-500/20 hover:text-white cursor-pointer transition-all flex items-center gap-2 group/state"
+                                  >
+                                    <div className="w-1.5 h-1.5 rounded-full bg-blue-400/50 group-hover/state:bg-blue-400"></div>
+                                    {state}
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div className="group">
+              <div className="text-2xl sm:text-3xl font-black bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent mb-1 group-hover:scale-110 transition-transform duration-300">
+                24/7
+              </div>
+              <div className="text-gray-300 text-[10px] sm:text-xs">Support</div>
+            </div>
           </div>
         </div>  
       </div>
 
-      {/* Add animations */}
       <style jsx>{`
         @keyframes ping {
           0% { transform: scale(1); opacity: 1; }
@@ -277,25 +378,27 @@ export default function LandingPage() {
         .animate-slideDown {
           animation: slideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        @keyframes textGlow {
-          0%, 100% { 
-            opacity: 1;
-            filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.6));
-          }
-          50% { 
-            opacity: 0.85;
-            filter: drop-shadow(0 0 30px rgba(168, 85, 247, 0.9));
-          }
-        }
-        .animate-textGlow {
-          animation: textGlow 2s ease-in-out infinite;
-        }
         @keyframes blink {
           0%, 100% { opacity: 1; }
           50% { opacity: 0; }
         }
         .animate-blink {
           animation: blink 0.5s step-end infinite;
+        }
+        
+        /* Custom Scrollbar */
+        .scrollbar-thin::-webkit-scrollbar {
+          width: 6px;
+        }
+        .scrollbar-thin::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        .scrollbar-thin::-webkit-scrollbar-thumb {
+          background: rgba(59, 130, 246, 0.5);
+          border-radius: 3px;
+        }
+        .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+          background: rgba(59, 130, 246, 0.7);
         }
       `}</style>
     </div>
